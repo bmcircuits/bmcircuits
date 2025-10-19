@@ -1,0 +1,25 @@
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+      <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2a1 1 0 0 1 .894.553l2.5 5A1 1 0 0 1 14.5 9H13l1.447 2.894a1 1 0 0 1-1.788.894L11 10.618 9.341 12.788a1 1 0 1 1-1.682-1.076L9 9H7.5a1 1 0 0 1-.894-1.447l2.5-5A1 1 0 0 1 9.999 2h2.002Z"/>
+      </svg>
+      <span class="brand-name">{{ site.title }}</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        {%- assign nav = site.navigation | default: site.data.navigation -%}
+        {%- for item in nav -%}
+          {%- assign is_active = false -%}
+          {%- if page.url == item.url or page.url == item.url | append: 'index.html' -%}
+            {%- assign is_active = true -%}
+          {%- endif -%}
+          <li>
+            <a href="{{ item.url | relative_url }}"{%- if is_active -%} aria-current="page"{%- endif -%}>{{ item.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</header>

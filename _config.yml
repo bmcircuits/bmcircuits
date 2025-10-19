@@ -1,0 +1,75 @@
+# Site metadata
+# Update url and baseurl to match your deployment (GitHub Pages or custom domain)
+# For a user/org site, omit baseurl. For a project site, set baseurl: /repo-name
+
+title: "Dark Electronics"
+description: "A dark, electronics-inspired Jekyll site scaffold with strong accessibility and performance foundations."
+lang: en
+url: ""   # e.g., https://your-username.github.io
+baseurl: "" # e.g., /your-repo-name for project pages
+
+# Visual/theme settings
+color_scheme: dark
+accent_color: "#00e5ff"
+surface_color: "#0e1621"
+background_color: "#0a0f14"
+logo: "/assets/images/favicon.svg"
+favicon: "/assets/images/favicon.svg"
+
+# Navigation (edit to match your site structure)
+navigation:
+  - title: Home
+    url: "/"
+  - title: Projects
+    url: "/projects/"
+  - title: About
+    url: "/about/"
+  - title: Contact
+    url: "/contact/"
+
+# Contact form (Formspree)
+# Use your own Formspree form ID when ready. Default provided for development/testing.
+formspree_form_id: f/xeordanw
+
+# Build settings
+permalink: pretty
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  footnote_nr: 1
+
+sass:
+  style: compressed
+
+# Plugins (GitHub Pages supports these)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  posts:
+    output: true
+
+# Defaults to apply layouts automatically
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+
+# Exclusions and includes
+exclude:
+  - node_modules
+  - vendor
+  - Gemfile.lock
+  - README.md
+  - images
