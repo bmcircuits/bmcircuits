@@ -1,0 +1,22 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="{{ site.background_color | default: '#0a0f14' }}">
+<meta name="color-scheme" content="dark light">
+
+<title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+
+{%- seo -%}
+
+<link rel="icon" href="{{ site.favicon | default: '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript>
+
+<link rel="preload" href="{{ '/assets/images/circuit-bg.svg' | relative_url }}" as="image" type="image/svg+xml">
+
+<!-- Prefers-reduced-motion considerations will be handled in CSS -->
+<script>
+  // Replace no-js with js for progressive enhancement hooks
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+</script>
