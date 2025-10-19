@@ -1,0 +1,28 @@
+<section class="section-projects" role="region" aria-labelledby="projects-title">
+  <div class="container stack">
+    <div class="section-header">
+      <h2 id="projects-title">Featured projects</h2>
+      <p class="muted">Selected work that highlights our approach and results.</p>
+    </div>
+
+    {%- assign featured = site.projects | where: 'featured', true -%}
+    {%- if featured and featured.size > 0 -%}
+      <div class="grid cols-3">
+        {%- for p in featured limit:6 -%}
+          {%- include sections/project-card.html project=p -%}
+        {%- endfor -%}
+      </div>
+      <p class="actions">
+        <a class="btn" href="{{ '/portfolio/' | relative_url }}">View all projects</a>
+      </p>
+    {%- else -%}
+      <div class="card">
+        <h3>No featured projects yet</h3>
+        <p class="muted">We're curating our latest work. Check back soon or reach out to discuss your project.</p>
+        <p class="actions">
+          <a class="btn btn-primary" href="{{ '/contact/' | relative_url }}">Start a project</a>
+        </p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

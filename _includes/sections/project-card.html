@@ -1,0 +1,21 @@
+{%- assign p = include.project -%}
+<article class="card project">
+  <a class="project-link" href="{{ p.url | relative_url }}" aria-label="View project: {{ p.title }}">
+    {%- if p.cover and p.cover.small -%}
+      <img
+        class="project-img"
+        src="{{ p.cover.small | relative_url }}"
+        srcset="{{ p.cover.small | relative_url }} 400w, {{ p.cover.medium | relative_url }} 800w, {{ p.cover.large | relative_url }} 1200w"
+        sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+        width="600" height="400"
+        loading="lazy"
+        alt="{{ p.cover_alt | default: p.title }}">
+    {%- endif -%}
+    <div class="project-body">
+      <h3 class="project-title">{{ p.title }}</h3>
+      {%- if p.summary -%}
+        <p class="project-summary">{{ p.summary }}</p>
+      {%- endif -%}
+    </div>
+  </a>
+</article>

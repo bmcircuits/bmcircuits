@@ -101,8 +101,8 @@ body[data-color-scheme="dark"]::before {
 }
 
 /* Links */
-a { color: var(--color-brand); text-decoration: none; }
-a:hover { text-decoration: underline; }
+ a { color: var(--color-brand); text-decoration: none; }
+ a:hover { text-decoration: underline; }
 
 /* Focus visibility */
 :where(a, button, [role="button"], input, textarea, select, summary):focus-visible {
@@ -210,3 +210,32 @@ h3 { font-size: var(--font-size-4); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* New sections */
+.section-trust { padding-block: var(--space-8); }
+.trust-metrics { display: flex; gap: var(--space-8); justify-content: center; flex-wrap: wrap; }
+.trust-metrics .metric { display: grid; place-items: center; padding: .5rem 1rem; }
+.trust-metrics .metric strong { font-size: var(--font-size-5); }
+.trust-logos { display: flex; gap: var(--space-6); justify-content: center; align-items: center; flex-wrap: wrap; opacity: .9; filter: grayscale(30%); }
+.trust-logos img { display: block; height: 40px; width: auto; }
+
+.section-services { padding-block: var(--space-10); }
+.section-services .service p { margin: 0; color: var(--color-muted); }
+
+.section-process { padding-block: var(--space-10); }
+.process-timeline { list-style: none; padding: 0 0 0 1.25rem; margin: 0; border-left: 2px dashed var(--color-border); }
+.process-timeline > li { position: relative; padding-left: .75rem; margin: 0 0 var(--space-6); }
+.process-timeline > li::before { content: ""; position: absolute; left: -9px; top: .4rem; width: 10px; height: 10px; border-radius: 999px; background: var(--color-brand); box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-brand) 30%, transparent); }
+.process-timeline h3 { margin-bottom: .25rem; }
+.process-timeline p { margin: 0; color: var(--color-muted); }
+
+.section-projects { padding-block: var(--space-10); }
+.project .project-link { display: block; color: inherit; text-decoration: none; }
+.project .project-img { display: block; width: 100%; height: auto; border-radius: var(--radius-2); border: 1px solid var(--color-border); }
+.project .project-body { padding-top: .75rem; }
+.project .project-summary { margin: 0; color: var(--color-muted); }
+
+.section-testimonials { padding-block: var(--space-10); background: color-mix(in oklab, var(--color-surface) 60%, transparent); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+.testimonial { margin: 0; }
+.testimonial p { margin: 0 0 .5rem; }
+.testimonial footer { color: var(--color-muted); }

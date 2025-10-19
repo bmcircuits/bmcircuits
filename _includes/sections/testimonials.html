@@ -1,0 +1,23 @@
+<section class="section-testimonials" role="region" aria-labelledby="testimonials-title">
+  <div class="container stack">
+    <h2 id="testimonials-title">What clients say</h2>
+    {%- assign items = site.data.testimonials | default: empty -%}
+    {%- if items and items.size > 0 -%}
+      <div class="grid cols-3">
+        {%- for t in items limit:3 -%}
+        <blockquote class="card testimonial">
+          <p>“{{ t.quote }}”</p>
+          <footer>
+            <cite>{{ t.author }}</cite>
+            {%- if t.role -%}
+              <span class="muted"> — {{ t.role }}</span>
+            {%- endif -%}
+          </footer>
+        </blockquote>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="muted">Testimonials coming soon.</p>
+    {%- endif -%}
+  </div>
+</section>
