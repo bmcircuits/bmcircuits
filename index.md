@@ -3,14 +3,14 @@ layout: default
 title: Home
 ---
 
+{% include sections/hero.html 
+  title="Electronics meets elegance" 
+  lead="A dark, circuit-inspired scaffold for your GitHub Pages site. Accessible by default, performance-minded, and ready to extend." 
+  cta_url="/portfolio/" 
+  cta_label="Explore Portfolio" 
+%}
+
 <section class="stack">
-  <header class="stack center">
-    <h1>Electronics meets elegance</h1>
-    <p class="muted">A dark, circuit-inspired scaffold for your GitHub Pages site. Accessible by default, performance-minded, and ready to extend.</p>
-    <p>
-      <a class="btn" href="{{ '/projects/' | relative_url }}">Explore Projects</a>
-    </p>
-  </header>
 
   <div class="grid cols-3">
     <article class="card">
