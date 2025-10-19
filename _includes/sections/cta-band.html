@@ -1,0 +1,23 @@
+{%- assign _id = include.id | default: 'cta' -%}
+<section class="section-cta" role="region" aria-labelledby="{{ _id }}-title">
+  <div class="container stack center">
+    {%- if include.title -%}
+      <h2 id="{{ _id }}-title">{{ include.title }}</h2>
+    {%- endif -%}
+
+    {%- if include.text -%}
+      <p class="lead">{{ include.text }}</p>
+    {%- endif -%}
+
+    {%- if include.cta_url or include.secondary_url -%}
+      <p class="actions">
+        {%- if include.cta_url and include.cta_label -%}
+          <a class="btn btn-primary" href="{{ include.cta_url | relative_url }}">{{ include.cta_label }}</a>
+        {%- endif -%}
+        {%- if include.secondary_url and include.secondary_label -%}
+          <a class="btn" href="{{ include.secondary_url | relative_url }}">{{ include.secondary_label }}</a>
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
