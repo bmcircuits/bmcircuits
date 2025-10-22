@@ -54,6 +54,9 @@ plugins:
 collections:
   posts:
     output: true
+  projects:
+    output: true
+    permalink: /projects/:slug/
 
 # Defaults to apply layouts automatically
 defaults:
