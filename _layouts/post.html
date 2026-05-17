@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="post-layout">
+  <a href="/blog/" class="post-back">← Back to posts</a>
+
+  <h1>{{ page.title }}</h1>
+
+  <div class="post-meta">
+    <span>{{ page.date | date: "%b %Y" }}</span>
+    {% if page.read_time %}<span>{{ page.read_time }}</span>{% endif %}
+    {% for tag in page.tags %}<span>{{ tag }}</span>{% endfor %}
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+</div>

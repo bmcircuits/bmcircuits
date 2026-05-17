@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-17T17:39:57+10:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">BMC — BobbyMcGlone Circuit Designs</title><subtitle>Electronic consulting — PCB &amp; hardware design, embedded systems, firmware development, and CAD enclosure design.</subtitle><author><name>Bobby McGlone</name><email>hello@bmc-circuits.com.au</email></author><entry><title type="html">Why I stopped using STM32CubeMX for new projects</title><link href="http://localhost:4000/stm32cubemx/" rel="alternate" type="text/html" title="Why I stopped using STM32CubeMX for new projects" /><published>2025-05-12T00:00:00+10:00</published><updated>2025-05-12T00:00:00+10:00</updated><id>http://localhost:4000/stm32cubemx</id><content type="html" xml:base="http://localhost:4000/stm32cubemx/"><![CDATA[<p>STM32CubeMX is ST’s graphical initialisation code generator. It’s been part of my workflow since I started with the STM32 family — you click pins, configure peripherals, and it spits out a project ready to compile. For the first few years, this felt like a superpower.</p>
+
+<h2 id="the-problem-with-generated-code">The problem with generated code</h2>
+
+<p>The issue isn’t that the generated code is wrong. It’s usually correct, and Cube does a reasonable job of handling clock trees and DMA conflicts. The problem is what it teaches you — or rather, what it doesn’t. Engineers who only ever work with Cube-generated projects often don’t understand why peripherals are initialised in a particular order, what the HAL abstraction is hiding, or how to debug when things go wrong below the HAL layer.</p>
+
+<p>The bigger practical issue is the regeneration story. Any time you add a peripheral or change a pin, you regenerate — and any custom code in protected regions gets at best awkward and at worst trampled. In a team environment this creates merge conflicts and a maintenance burden that accumulates fast.</p>
+
+<h2 id="what-i-use-instead">What I use instead</h2>
+
+<p>For new projects I write peripheral initialisation by hand against the reference manual, using the LL (Low-Layer) drivers or direct register access depending on how performance-critical the path is. This takes longer at the start but the resulting code is smaller, easier to read, and doesn’t carry the HAL’s defensive overhead. More importantly, I understand every line of it.</p>
+
+<p>I still use CubeMX for one thing: checking my clock tree. The clock configuration UI is genuinely excellent and saves mental arithmetic. I just don’t click Generate Code at the end.</p>
+
+<h2 id="what-to-do-with-existing-cube-projects">What to do with existing Cube projects</h2>
+
+<p>If you’ve inherited a CubeMX project, I wouldn’t rip it out. The HAL isn’t bad — it’s just a tradeoff. The better path is understanding what the generated code is doing and extending it carefully, rather than regenerating over your changes.</p>
+
+<p>For new silicon bring-up on an unfamiliar peripheral, I’ll still sometimes generate a Cube project once to read the initialisation order — then rewrite it by hand for the production codebase.</p>]]></content><author><name>Bobby McGlone</name><email>hello@bmc-circuits.com.au</email></author><category term="STM32" /><category term="Firmware" /><category term="Tooling" /><summary type="html"><![CDATA[CubeMX is convenient but the generated code carries real tradeoffs. Here's what I use instead and why the initialisation layer matters more than most engineers realise.]]></summary></entry><entry><title type="html">Thermal relief on high-current PCBs: getting it right</title><link href="http://localhost:4000/thermal-relief/" rel="alternate" type="text/html" title="Thermal relief on high-current PCBs: getting it right" /><published>2025-03-04T00:00:00+11:00</published><updated>2025-03-04T00:00:00+11:00</updated><id>http://localhost:4000/thermal-relief</id><content type="html" xml:base="http://localhost:4000/thermal-relief/"><![CDATA[<p>Thermal relief is one of those defaults that gets applied without thinking, and on most PCBs it’s fine. Through-hole components on signal nets? Use thermal relief, make soldering easy. Power planes carrying 10A? That’s where the default starts costing you.</p>
+
+<h2 id="what-thermal-relief-actually-does">What thermal relief actually does</h2>
+
+<p>A thermal relief pad connects a through-hole pin to a copper plane via narrow spokes rather than a full flood connection. This reduces the thermal mass the iron has to overcome when soldering — without it, the plane acts as a heatsink and the joint won’t flow properly. For hand or selective soldering, full-flood connections on inner power planes are a reliable way to get cold joints.</p>
+
+<h2 id="when-it-hurts-you">When it hurts you</h2>
+
+<p>The spokes that make soldering easy also restrict current. Each spoke is a bottleneck, and for high-current paths — motor connectors, power input terminals, anything carrying more than 3–4A continuously — the resistance of four narrow copper spokes adds up to real voltage drop and localised heating. I’ve seen connector pins running visibly warm because of thermal relief on a 5A rail.</p>
+
+<p>The fix is straightforward: for high-current vias and pads, remove thermal relief and use a full solid connection. Accept that you’ll need a higher-wattage iron, pre-heat the board, or use reflow rather than hand soldering. The electrical performance is worth it.</p>
+
+<h2 id="spokes-how-many-how-wide">Spokes: how many, how wide?</h2>
+
+<p>If you do need thermal relief on a higher-current net, you can improve it by increasing spoke width and count. Most EDA tools let you set spoke width per net class. For a 3A net with thermal relief, four 0.5mm spokes is marginal — four 0.8mm spokes or six 0.5mm spokes give meaningfully lower resistance and better current handling.</p>
+
+<p>Run a quick calculation: model each spoke as a short track and check the temperature rise at operating current using the IPC-2152 curves. It takes five minutes and will tell you whether your relief configuration is workable.</p>
+
+<h2 id="the-tldr">The TL;DR</h2>
+
+<ul>
+  <li>Signal and low-current nets: thermal relief is fine, leave the default.</li>
+  <li>High-current connections (&gt;3A): remove thermal relief, use solid connection.</li>
+  <li>Mid-range: calculate, or widen the spokes.</li>
+</ul>]]></content><author><name>Bobby McGlone</name><email>hello@bmc-circuits.com.au</email></author><category term="PCB Design" /><category term="Thermal" /><summary type="html"><![CDATA[Thermal relief pads are a soldering aid, not a heat management strategy. A look at when they help, when they hurt, and how to spec them correctly for power planes.]]></summary></entry><entry><title type="html">The case for writing a short design doc before touching KiCad</title><link href="http://localhost:4000/design-doc/" rel="alternate" type="text/html" title="The case for writing a short design doc before touching KiCad" /><published>2025-01-20T00:00:00+11:00</published><updated>2025-01-20T00:00:00+11:00</updated><id>http://localhost:4000/design-doc</id><content type="html" xml:base="http://localhost:4000/design-doc/"><![CDATA[<p>The temptation when starting a new hardware project is to open KiCad, create a schematic, and start placing components. It’s satisfying, it feels like progress, and the design doc can always come later. I’ve done this more times than I’d like to admit, and it has cost me board respins every single time.</p>
+
+<h2 id="what-goes-in-the-document">What goes in the document</h2>
+
+<p>It doesn’t need to be long. Two pages is usually enough. I cover:</p>
+
+<ul>
+  <li><strong>Functional requirements</strong> — what must this board do, at what voltage, drawing how much current.</li>
+  <li><strong>Interface requirements</strong> — what connectors, what protocols, what pinout constraints exist from the mating system.</li>
+  <li><strong>Mechanical constraints</strong> — board outline, mounting holes, keep-out areas, connector orientation requirements.</li>
+  <li><strong>Open questions</strong> — the things I don’t know yet and need to resolve before layout starts.</li>
+</ul>
+
+<p>That last section is the most valuable. Writing it down forces you to realise what you’re assuming. “The microcontroller has enough timer channels for PWM generation” is easy to assume; writing it down prompts you to actually check the datasheet. It turns vague assumptions into explicit design decisions that can be verified or challenged.</p>
+
+<h2 id="the-real-payoff">The real payoff</h2>
+
+<p>The document also serves as a communication tool. If you’re working with a client, having them sign off on a requirements doc before you start means the schematic review conversation is about implementation, not about whether the requirements were right. That’s a much more productive place to have disagreements.</p>
+
+<p>Even on solo projects, writing the requirements down and sleeping on it before opening KiCad has caught more than a few issues that would otherwise have become respin-worthy.</p>
+
+<h2 id="what-format">What format?</h2>
+
+<p>Plain text or Markdown, in version control alongside the design files. Not a Word document, not a shared Google Doc with tracking turned off. The design doc should evolve with the project — it’s a living reference, not a waterfall deliverable.</p>
+
+<p>I use a simple template I’ve built up over several projects. If there’s interest, I’ll post it as a separate article.</p>]]></content><author><name>Bobby McGlone</name><email>hello@bmc-circuits.com.au</email></author><category term="Process" /><category term="Hardware" /><summary type="html"><![CDATA[Two pages of plain text up front can save you a board respin. What I put in a pre-layout design document and why it's become a non-negotiable part of my process.]]></summary></entry></feed>

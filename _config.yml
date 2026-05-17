@@ -1,0 +1,40 @@
+title: BMC — BobbyMcGlone Circuit Designs
+description: Electronic consulting — PCB & hardware design, embedded systems, firmware development, and CAD enclosure design.
+baseurl: ""
+url: "https://bmc-circuits.com.au"
+
+author:
+  name: Bobby McGlone
+  email: hello@bmc-circuits.com.au
+  location: Gold Coast, Queensland, Australia
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title/
+highlighter: rouge
+
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "project"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why I stopped using STM32CubeMX for new projects — BMC — BobbyMcGlone Circuit Designs</title>
+  <meta name="description" content="Electronic consulting — PCB & hardware design, embedded systems, firmware development, and CAD enclosure design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+  <nav>
+  <a class="nav-logo" href="/">
+    <img src="/assets/images/bmc-logo.png" alt="BMC — BobbyMcGlone Circuit Designs">
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" >Home</a></li>
+    <li><a href="/portfolio/" >Portfolio</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/contact/" class="nav-cta" >Contact</a></li>
+  </ul>
+</nav>
+
+
+  <main>
+    <div class="post-layout">
+  <a href="/blog/" class="post-back">← Back to posts</a>
+
+  <h1>Why I stopped using STM32CubeMX for new projects</h1>
+
+  <div class="post-meta">
+    <span>May 2025</span>
+    <span>8 min read</span>
+    <span>STM32</span><span>Firmware</span><span>Tooling</span>
+  </div>
+
+  <div class="post-body">
+    <p>STM32CubeMX is ST’s graphical initialisation code generator. It’s been part of my workflow since I started with the STM32 family — you click pins, configure peripherals, and it spits out a project ready to compile. For the first few years, this felt like a superpower.</p>
+
+<h2 id="the-problem-with-generated-code">The problem with generated code</h2>
+
+<p>The issue isn’t that the generated code is wrong. It’s usually correct, and Cube does a reasonable job of handling clock trees and DMA conflicts. The problem is what it teaches you — or rather, what it doesn’t. Engineers who only ever work with Cube-generated projects often don’t understand why peripherals are initialised in a particular order, what the HAL abstraction is hiding, or how to debug when things go wrong below the HAL layer.</p>
+
+<p>The bigger practical issue is the regeneration story. Any time you add a peripheral or change a pin, you regenerate — and any custom code in protected regions gets at best awkward and at worst trampled. In a team environment this creates merge conflicts and a maintenance burden that accumulates fast.</p>
+
+<h2 id="what-i-use-instead">What I use instead</h2>
+
+<p>For new projects I write peripheral initialisation by hand against the reference manual, using the LL (Low-Layer) drivers or direct register access depending on how performance-critical the path is. This takes longer at the start but the resulting code is smaller, easier to read, and doesn’t carry the HAL’s defensive overhead. More importantly, I understand every line of it.</p>
+
+<p>I still use CubeMX for one thing: checking my clock tree. The clock configuration UI is genuinely excellent and saves mental arithmetic. I just don’t click Generate Code at the end.</p>
+
+<h2 id="what-to-do-with-existing-cube-projects">What to do with existing Cube projects</h2>
+
+<p>If you’ve inherited a CubeMX project, I wouldn’t rip it out. The HAL isn’t bad — it’s just a tradeoff. The better path is understanding what the generated code is doing and extending it carefully, rather than regenerating over your changes.</p>
+
+<p>For new silicon bring-up on an unfamiliar peripheral, I’ll still sometimes generate a Cube project once to read the initialisation order — then rewrite it by hand for the production codebase.</p>
+
+  </div>
+</div>
+
+  </main>
+
+  <footer>
+  <div class="footer-logo">
+    <img src="/assets/images/bmc-logo.png" alt="BMC">
+  </div>
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio/">Portfolio</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 BobbyMcGlone Circuit Designs &mdash; Gold Coast, AU</p>
+</footer>
+
+
+</body>
+</html>

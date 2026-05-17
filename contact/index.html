@@ -1,0 +1,73 @@
+---
+layout: default
+title: Contact
+description: Get in touch with BMC — BobbyMcGlone Circuit Designs for your electronics consulting project.
+permalink: /contact/
+---
+
+<div class="contact-layout">
+  <div class="contact-left">
+    <p class="section-label">Get in touch</p>
+    <div class="contact-heading">Let's talk about<br>your project.</div>
+    <div class="contact-info-items">
+      <div>
+        <div class="contact-info-label">Email</div>
+        <div class="contact-info-value">hello@bmc-circuits.com.au</div>
+      </div>
+      <div>
+        <div class="contact-info-label">Based in</div>
+        <div class="contact-info-value">Gold Coast, Queensland<br>Available globally</div>
+      </div>
+      <div>
+        <div class="contact-info-label">Response time</div>
+        <div class="contact-info-value">Within 24 hours on business days</div>
+      </div>
+      <div>
+        <div class="contact-info-label">Services</div>
+        <div class="contact-info-value">
+          PCB &amp; Hardware Design<br>
+          Embedded Systems<br>
+          Firmware Development<br>
+          CAD &amp; Enclosures
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <h2>Send a message</h2>
+    <!-- Replace ACTION_URL with your Formspree endpoint, e.g. https://formspree.io/f/yourcode -->
+    <form action="ACTION_URL" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="first_name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last name</label>
+          <input type="text" id="lname" name="last_name" placeholder="Your surname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" required>
+      </div>
+      <div class="form-group">
+        <label for="service">Service of interest</label>
+        <select id="service" name="service">
+          <option value="">Select a service…</option>
+          <option>PCB &amp; Hardware Design</option>
+          <option>Embedded Systems Design</option>
+          <option>Firmware Development</option>
+          <option>CAD — Enclosures &amp; Sheet Metal</option>
+          <option>Multiple / Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell me about your project</label>
+        <textarea id="message" name="message" placeholder="Brief description of what you're building, timeline, and any specific requirements…" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message</button>
+    </form>
+  </div>
+</div>

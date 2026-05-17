@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thermal relief on high-current PCBs: getting it right — BMC — BobbyMcGlone Circuit Designs</title>
+  <meta name="description" content="Electronic consulting — PCB & hardware design, embedded systems, firmware development, and CAD enclosure design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+  <nav>
+  <a class="nav-logo" href="/">
+    <img src="/assets/images/bmc-logo.png" alt="BMC — BobbyMcGlone Circuit Designs">
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" >Home</a></li>
+    <li><a href="/portfolio/" >Portfolio</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/contact/" class="nav-cta" >Contact</a></li>
+  </ul>
+</nav>
+
+
+  <main>
+    <div class="post-layout">
+  <a href="/blog/" class="post-back">← Back to posts</a>
+
+  <h1>Thermal relief on high-current PCBs: getting it right</h1>
+
+  <div class="post-meta">
+    <span>Mar 2025</span>
+    <span>5 min read</span>
+    <span>PCB Design</span><span>Thermal</span>
+  </div>
+
+  <div class="post-body">
+    <p>Thermal relief is one of those defaults that gets applied without thinking, and on most PCBs it’s fine. Through-hole components on signal nets? Use thermal relief, make soldering easy. Power planes carrying 10A? That’s where the default starts costing you.</p>
+
+<h2 id="what-thermal-relief-actually-does">What thermal relief actually does</h2>
+
+<p>A thermal relief pad connects a through-hole pin to a copper plane via narrow spokes rather than a full flood connection. This reduces the thermal mass the iron has to overcome when soldering — without it, the plane acts as a heatsink and the joint won’t flow properly. For hand or selective soldering, full-flood connections on inner power planes are a reliable way to get cold joints.</p>
+
+<h2 id="when-it-hurts-you">When it hurts you</h2>
+
+<p>The spokes that make soldering easy also restrict current. Each spoke is a bottleneck, and for high-current paths — motor connectors, power input terminals, anything carrying more than 3–4A continuously — the resistance of four narrow copper spokes adds up to real voltage drop and localised heating. I’ve seen connector pins running visibly warm because of thermal relief on a 5A rail.</p>
+
+<p>The fix is straightforward: for high-current vias and pads, remove thermal relief and use a full solid connection. Accept that you’ll need a higher-wattage iron, pre-heat the board, or use reflow rather than hand soldering. The electrical performance is worth it.</p>
+
+<h2 id="spokes-how-many-how-wide">Spokes: how many, how wide?</h2>
+
+<p>If you do need thermal relief on a higher-current net, you can improve it by increasing spoke width and count. Most EDA tools let you set spoke width per net class. For a 3A net with thermal relief, four 0.5mm spokes is marginal — four 0.8mm spokes or six 0.5mm spokes give meaningfully lower resistance and better current handling.</p>
+
+<p>Run a quick calculation: model each spoke as a short track and check the temperature rise at operating current using the IPC-2152 curves. It takes five minutes and will tell you whether your relief configuration is workable.</p>
+
+<h2 id="the-tldr">The TL;DR</h2>
+
+<ul>
+  <li>Signal and low-current nets: thermal relief is fine, leave the default.</li>
+  <li>High-current connections (&gt;3A): remove thermal relief, use solid connection.</li>
+  <li>Mid-range: calculate, or widen the spokes.</li>
+</ul>
+
+  </div>
+</div>
+
+  </main>
+
+  <footer>
+  <div class="footer-logo">
+    <img src="/assets/images/bmc-logo.png" alt="BMC">
+  </div>
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio/">Portfolio</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 BobbyMcGlone Circuit Designs &mdash; Gold Coast, AU</p>
+</footer>
+
+
+</body>
+</html>

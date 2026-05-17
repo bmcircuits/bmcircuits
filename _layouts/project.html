@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<div class="project-layout">
+  <a href="/portfolio/" class="project-back">← Back to portfolio</a>
+
+  <p class="section-label">{{ page.category }}</p>
+  <h1>{{ page.title }}</h1>
+
+  {% if page.image %}
+  <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="project-hero-img">
+  {% endif %}
+
+  {% if page.specs %}
+  <div class="project-specs">
+    {% for spec in page.specs %}
+    <div class="spec-item">
+      <div class="spec-label">{{ spec.label }}</div>
+      <div class="spec-value">{{ spec.value }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="project-body">
+    {{ content }}
+  </div>
+</div>

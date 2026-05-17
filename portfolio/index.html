@@ -1,0 +1,39 @@
+---
+layout: default
+title: Portfolio
+description: Recent projects across PCB hardware design, embedded systems, firmware, and mechanical engineering.
+permalink: /portfolio/
+---
+
+<div class="page-header">
+  <p class="section-label">Our work</p>
+  <h1>Portfolio</h1>
+  <p>Recent projects across hardware design, embedded systems, and mechanical engineering.</p>
+</div>
+
+<div class="portfolio-grid">
+  {% assign projects = site.portfolio | sort: 'date' | reverse %}
+  {% for project in projects %}
+  <a class="project-card" href="{{ project.url | relative_url }}">
+    <div class="project-thumb">
+      {% if project.image %}
+        <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+      {% else %}
+        <svg class="project-thumb-placeholder" width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <rect x="8" y="16" width="48" height="32" rx="3" stroke="#1a1917" stroke-width="2"/>
+          <line x1="8" y1="28" x2="56" y2="28" stroke="#1a1917" stroke-width="1.5"/>
+          <line x1="20" y1="16" x2="20" y2="48" stroke="#1a1917" stroke-width="1.5"/>
+        </svg>
+        <span class="project-thumb-label">{{ project.category | upcase }}</span>
+      {% endif %}
+    </div>
+    <span class="project-tag">{{ project.category }}</span>
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.excerpt | strip_html | truncatewords: 30 }}</p>
+    <div class="project-meta">
+      <span>{{ project.date | date: "%Y" }}</span>
+      {% if project.tech %}<span>{{ project.tech }}</span>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
