@@ -67,7 +67,7 @@
     list-style: none;
   }
 
-  .nav-links li button {
+  .nav-links li a {
     font-family: var(--sans);
     font-size: 14px;
     font-weight: 400;
@@ -78,14 +78,16 @@
     padding: 7px 16px;
     border-radius: 6px;
     transition: background 0.15s, color 0.15s;
+    text-decoration: none;
+    display: inline-block;
   }
 
-  .nav-links li button:hover {
+  .nav-links li a:hover {
     background: rgba(255,255,255,0.08);
     color: #fff;
   }
 
-  .nav-links li button.active {
+  .nav-links li a.active {
     color: var(--gold-light);
     font-weight: 500;
   }
@@ -98,40 +100,6 @@
   }
 
   .nav-cta:hover { opacity: 0.88 !important; background: var(--gold) !important; }
-
-  /* ADMIN TOGGLE */
-  .admin-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: 16px;
-    padding-left: 16px;
-    border-left: 1px solid rgba(255,255,255,0.12);
-  }
-
-  .admin-toggle label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.35);
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .admin-toggle input[type=checkbox] {
-    width: 14px;
-    height: 14px;
-    accent-color: var(--gold);
-    cursor: pointer;
-  }
-
-  /* PAGES */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* ADMIN-ONLY ELEMENTS */
-  .admin-only { display: none; }
-  body.admin-mode .admin-only { display: flex; }
 
   /* HERO */
   .hero {
@@ -190,6 +158,8 @@
     font-weight: 500;
     cursor: pointer;
     transition: opacity 0.15s;
+    text-decoration: none;
+    display: inline-block;
   }
 
   .btn-primary:hover { opacity: 0.88; }
@@ -205,6 +175,8 @@
     font-weight: 400;
     cursor: pointer;
     transition: background 0.15s;
+    text-decoration: none;
+    display: inline-block;
   }
 
   .btn-secondary:hover { background: var(--surface); }
@@ -462,34 +434,6 @@
     margin-top: auto;
   }
 
-  /* UPLOAD ZONE */
-  .upload-section {
-    padding: 32px 48px;
-    max-width: 1100px;
-    margin: 0 auto;
-    justify-content: flex-end;
-  }
-
-  .upload-zone {
-    border: 1px dashed var(--border-strong);
-    border-radius: 10px;
-    padding: 14px 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: background 0.15s;
-    background: var(--gold-pale);
-  }
-
-  .upload-zone:hover { background: #f0dfa0; }
-
-  .upload-zone span {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gold-dark);
-  }
-
   /* CONTACT PAGE */
   .contact-layout {
     display: grid;
@@ -687,25 +631,6 @@
     align-self: center;
   }
 
-  .new-post-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--gold-pale);
-    border: 1px solid var(--border-strong);
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gold-dark);
-    cursor: pointer;
-    transition: background 0.15s;
-    margin-top: 24px;
-  }
-
-  .new-post-btn:hover { background: #f0dfa0; }
-
   /* BLOG DETAIL */
   .blog-detail {
     display: none;
@@ -815,52 +740,6 @@
 
   .modal-close:hover { color: var(--text); }
 
-  /* ADMIN MODAL */
-  .admin-modal {
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 36px;
-    width: 360px;
-    max-width: 92vw;
-    border-top: 3px solid var(--gold);
-    text-align: center;
-  }
-
-  .admin-modal h3 {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 8px;
-  }
-
-  .admin-modal p {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-  }
-
-  .admin-modal input {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    font-family: var(--mono);
-    font-size: 14px;
-    outline: none;
-    margin-bottom: 12px;
-    text-align: center;
-    letter-spacing: 0.1em;
-  }
-
-  .admin-modal input:focus { border-color: var(--gold); }
-
-  .admin-error {
-    font-size: 12px;
-    color: #c0392b;
-    margin-bottom: 8px;
-    min-height: 18px;
-  }
-
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .hero { padding: 56px 20px 48px; }
@@ -875,9 +754,7 @@
     .blog-post-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 20px; }
     .blog-layout { padding: 0 20px 60px; }
     .page-header { padding: 48px 20px 32px; }
-    .upload-section { padding: 20px; }
     .process-grid { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .blog-detail { padding: 40px 20px; }
-    .admin-toggle label { display: none; }
   }
