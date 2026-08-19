@@ -6,7 +6,7 @@ baseurl: "/bmcircuits"
 author:
   name: Bobby McGlone
   email: hello@bmc-circuits.com.au
-  location: Gold Coast, Queensland, Australia
+  location: Sydney, Australia
 
 # Build settings
 markdown: kramdown
