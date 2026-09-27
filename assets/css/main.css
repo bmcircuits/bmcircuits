@@ -230,19 +230,19 @@ footer {
 }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(40px, 6vw, 68px);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-bottom: 28px;
-}
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(46px, 6vw, 72px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    color: var(--text);
+    margin: 0 0 32px;
+  }
 
 .hero h1 em {
-  font-style: italic;
-  color: var(--text-secondary);
-}
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
 
 .hero-sub {
   font-size: 18px;
@@ -250,7 +250,7 @@ footer {
   color: var(--text-secondary);
   max-width: 520px;
   line-height: 1.7;
-  margin-bottom: 40px;
+  margin: 0 0 20px;
 }
 
 .hero-actions {

@@ -1,11 +1,11 @@
-title: BMC — BobbyMcGlone Circuit Designs
-description: Electronic consulting — PCB & hardware design, embedded systems, firmware development, and CAD enclosure design.
+title: BMCircuits
+description: Electronic consulting — PCB & hardware design, embedded systems, firmware development, Product test and CAD enclosure design.
 url: "https://bmcircuits.com" # Github Pages = "https://bmcircuits.github.io"
 baseurl: "" # Github Pages = "/bmcircuits"
 
 author:
   name: Bobby McGlone
-  email: hello@bmc-circuits.com.au
+  email: info@bmcircuits.com
   location: Sydney, Australia
 
 # Build settings
