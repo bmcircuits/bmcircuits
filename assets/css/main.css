@@ -923,3 +923,13 @@ opacity: 0.75;
     color: var(--gold-light);
     background: rgba(184,144,10,0.12);
   }
+
+.service-card[onclick] {
+cursor: pointer;
+}
+
+.service-card[onclick]:hover {
+background: #fefcf5;
+transform: translateY(-2px);
+transition: transform 0.15s, background 0.15s;
+}

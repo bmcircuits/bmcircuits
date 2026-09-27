@@ -1,0 +1,10 @@
+{
+    "name": "bmcircuits",
+    "compatibility_date": "2026-09-27",
+    "assets": {
+      "directory": "./_site/",
+      "not_found_handling": "404-page"
+    },
+    "workers_dev": true,
+    "preview_urls": true
+  }

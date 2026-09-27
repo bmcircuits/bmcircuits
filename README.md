@@ -19,7 +19,7 @@ Wireless LAN adapter Wi-Fi:
 
 Then inside bash terminal on the root directory of website repo, run the following command:
 ```bash
-bundle exec jeykll serve --host 0.0.0.0
+bundle exec jekyll serve --host 0.0.0.0
 ```
 
 Then open `http://192.168.8.160:4000/bmcircuits/` in your browser. where the IP address is the one found above in the IPv4 Address above.
