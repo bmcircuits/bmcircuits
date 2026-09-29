@@ -31,3 +31,11 @@ Even on solo projects, writing the requirements down and sleeping on it before o
 Plain text or Markdown, in version control alongside the design files. Not a Word document, not a shared Google Doc with tracking turned off. The design doc should evolve with the project — it's a living reference, not a waterfall deliverable.
 
 I use a simple template I've built up over several projects. If there's interest, I'll post it as a separate article.
+
+Just adding as a placeholder to remember css style added.
+|  Left-aligned | Center-aligned | Right-aligned |
+| :----------- | :------------- | ------------: |
+| Text         | Text           |          Text |
+| Text         | Text           |          Text |
+| Text         | Text           |          Text |
+{:.table-striped}
